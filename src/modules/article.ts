@@ -14,6 +14,9 @@ interface Article {
   createDate?: number;
   modifyDate?: number;
   views?: number;
+  tagArr?:Array<string>;
+  [propName: string]: any;
+
 }
 
 interface Sort {
@@ -24,21 +27,24 @@ interface Sort {
 }
 export default class ArticleModel {
   static async create(article: Article) {
-    return await ArticleDbModel({ ...article }).save();
+    return ArticleDbModel({ ...article }).save();
   }
   static async findArticle(option: Article) {
-    return await ArticleDbModel.findOne(option,{_id: 0});
+    return ArticleDbModel.findOne(option,{_id: 0});
   }
   static async findAtricles(option: Article, sort: Sort, limit:number , skip: number) {
-    return await ArticleDbModel.find(option, {_id: 0}).sort(sort).limit(limit).skip(skip)
+    return ArticleDbModel.find(option, {_id: 0}).sort(sort).limit(limit).skip(skip)
   }
   static async findAtriclesAll(option: Article) {
-    return await ArticleDbModel.find(option, {_id: 0})
+    return ArticleDbModel.find(option, {_id: 0})
+  }
+  static async findAtriclesAllCount(option: Article) {
+    return ArticleDbModel.find(option, {_id: 0}).countDocuments()
   }
   static async updateArticle(id: string, option: Article) {
-    return await ArticleDbModel.updateOne({ id }, { ...option });
+    return ArticleDbModel.updateOne({ id }, { ...option });
   }
   static async delArticle(id: string) {
-    return await ArticleDbModel.remove({ id });
+    return ArticleDbModel.deleteOne({ id });
   }
 }

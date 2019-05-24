@@ -20,13 +20,13 @@ export default class ArticleTagsModel {
   }
   // 获取所有标签
   static async getTags() {
-    return await ArticleTagsDbModel.find();
+    return await ArticleTagsDbModel.find({}, {_id: 0});
   }
   static async findTag(tagName: string) {
-    return await ArticleTagsDbModel.find({tagName});
+    return await ArticleTagsDbModel.find({tagName}, {_id: 0});
   }
   static async findExitTags(tagNameArr: Array<string>) {
-    return await ArticleTagsDbModel.find({ tagName: { $in: tagNameArr } });
+    return await ArticleTagsDbModel.find({tagName: {$in: tagNameArr}}, {_id: 0});
   }
   // 分页查询
 }

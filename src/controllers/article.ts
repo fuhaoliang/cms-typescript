@@ -24,7 +24,7 @@ interface Article {
 
 interface ArticleTags {
   tagName: string;
-  createDate?: number;
+  modifyDate?: number;
 }
 
 export class ArticleController {
@@ -61,7 +61,7 @@ export class ArticleController {
   }
   // 删除
   static async delArticle(ctx: BaseContext) {
-    const { id } = ctx.request.body;
+    const { id } = ctx.query;
     let { n } = await ArticleModel.delArticle(id);
     if (n === 1) {
       ctx.response.status = 200;
@@ -118,14 +118,25 @@ export class ArticleController {
     let sort = JSON.parse(query.sort || '{}')
     delete query.pagesize
     delete query.page
+    delete query.total
     delete query.sort
+    // 去除空查询
+    for (let key in query) {
+      if (query[key] === '' || query[key] === '[]' || query[key] === '{}') delete query[key]
+    }
 
-    let { createDate } = query
-    if (createDate) {
-      createDate = JSON.parse(createDate)
-      query.createDate = {
-        $gt: createDate[0] || 0,
-        $lt: createDate[1] || new Date().getTime()
+    let { modifyDate, tagArr } = query
+    if (modifyDate) {
+      modifyDate = JSON.parse(modifyDate)
+      query.modifyDate = {
+        $gt: modifyDate[0] || 0,
+        $lt: modifyDate[1] ? modifyDate[1] + 24 * 60 * 60 * 1000 : new Date().getTime()
+      }
+    }
+    if (tagArr) {
+      tagArr = JSON.parse(tagArr)
+      query.tagArr = {
+        $in: tagArr
       }
     }
     let [articles, articleAll] =  await Promise.all([ArticleModel.findAtricles(query, sort, limit, skip), ArticleModel.findAtriclesAll(query)])
@@ -137,6 +148,16 @@ export class ArticleController {
         page: currentPage,
         total: articleAll.length
       }
+    });
+  }
+  // 获取文章全量信息
+  static async getArticlesCount (ctx: BaseContext) {
+    let [totalCount = 0, puliceCount = 0, tagArr = []] = await Promise.all([ArticleModel.findAtriclesAllCount({}), ArticleModel.findAtriclesAllCount({public: 1}), ArticleTagsModel.getTags()])
+    ctx.response.status = 200;
+    ctx.body = statusCode.SUCCESS_200('ok', {
+      totalCount,
+      puliceCount,
+      tagArr
     });
   }
 }

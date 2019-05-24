@@ -25,6 +25,7 @@ router.delete('/article/delete', ArticleController.delArticle);
 router.patch('/article/:id', ArticleController.pacthArticle);
 // 文章聚合接口
 router.get('/articles', ArticleController.getArticles);
+router.get('/articles/count', ArticleController.getArticlesCount);
 
 // 文章标签
 router.post('/tags/create', ArticleTagsController.create);
