@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 import { statusCode } from '../util/status-code';
-import { BaseContext } from 'koa';
+// import { Context } from 'koa';
 export class CommonControllers {
-  static async updatedImage(ctx: BaseContext) {
+  static async updatedImage(ctx: any) {
     // 上传单个文件
     try {
       const file = ctx.request.files.file; // 获取上传文件

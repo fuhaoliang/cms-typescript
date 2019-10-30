@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/bin/www.js",
-    "watch-server": "nodemon --watch ./src -e ts,tsx --exec ts-node ./src/bin/www.ts"
+    "start": "tsc && node ./dist/bin/www.js",
+    "watch-server": "nodemon --watch ./src -e ts,tsx --exec ts-node ./src/bin/www.ts",
+    "pm2": "tsc && pm2 start start.json"
   },
   "author": "fhl",
   "license": "ISC",

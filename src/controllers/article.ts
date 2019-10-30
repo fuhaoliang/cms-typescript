@@ -1,6 +1,6 @@
 
 import { statusCode } from '../util/status-code';
-import { BaseContext } from 'koa';
+import { Context } from 'koa';
 import ArticleModel from '../modules/article';
 import ArticleTagsModel from '../modules/article_tag';
 
@@ -29,7 +29,7 @@ interface ArticleTags {
 
 export class ArticleController {
   // 创建
-  static async create(ctx: BaseContext) {
+  static async create(ctx: Context) {
     let atricle: Article = ctx.request.body;
     const { tagArr } = ctx.request.body;
     let newTagNameArr:Array<ArticleTags> = []
@@ -60,7 +60,7 @@ export class ArticleController {
     }
   }
   // 删除
-  static async delArticle(ctx: BaseContext) {
+  static async delArticle(ctx: Context) {
     const { id } = ctx.query;
     let { n } = await ArticleModel.delArticle(id);
     if (n === 1) {
@@ -72,7 +72,7 @@ export class ArticleController {
     }
   }
   // 修改
-  static async pacthArticle(ctx: BaseContext) {
+  static async pacthArticle(ctx: Context) {
     const { id } = ctx.params;
     const { tagArr = [] } = ctx.request.body;
     // 判断是否有新标签
@@ -98,7 +98,7 @@ export class ArticleController {
     }
   }
   // 获取
-  static async getArticleInfo(ctx: BaseContext) {
+  static async getArticleInfo(ctx: Context) {
     let { id } = ctx.params;
     let article: Article = await ArticleModel.findArticle({ id });
     if (article) {
@@ -110,7 +110,7 @@ export class ArticleController {
     }
   }
   // 条件查询
-  static async getArticles(ctx: BaseContext){
+  static async getArticles(ctx: Context){
     let query = JSON.parse(JSON.stringify(ctx.query))
     let limit = query.pagesize - 0 || 20; //分页参数
     let currentPage = query.page - 0 || 1; //当前页码
@@ -151,7 +151,7 @@ export class ArticleController {
     });
   }
   // 获取文章全量信息
-  static async getArticlesCount (ctx: BaseContext) {
+  static async getArticlesCount (ctx: Context) {
     let [totalCount = 0, puliceCount = 0, tagArr = []] = await Promise.all([ArticleModel.findAtriclesAllCount({}), ArticleModel.findAtriclesAllCount({public: 1}), ArticleTagsModel.getTags()])
     ctx.response.status = 200;
     ctx.body = statusCode.SUCCESS_200('ok', {

@@ -5,7 +5,7 @@ import { statusCode } from '../util/status-code';
 import secret from '../config/secret';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { BaseContext } from 'koa';
+import { Context } from 'koa';
 const uuid = require('uuid/v1');
 // const util = require('util');
 // const verify = util.promisify(jwt.verify);
@@ -26,7 +26,7 @@ export class UserController {
    * @param {type}
    * @return:
    */
-  static async create(ctx: BaseContext) {
+  static async create(ctx: Context) {
     let user: User = ctx.request.body;
     let { username, password } = user;
     let exitUser: User = await UserModel.findUserByName({ username });
@@ -79,7 +79,7 @@ export class UserController {
    * @param {type}
    * @return:
    */
-  static async login(ctx: BaseContext) {
+  static async login(ctx: Context) {
     const { username, password } = ctx.request.body;
     let userInfo: User = await UserModel.findUserByName({ username });
     if (userInfo) {
@@ -104,7 +104,7 @@ export class UserController {
       ctx.body = statusCode.ERROR_403('用户不存在');
     }
   }
-  static async logout(ctx: BaseContext) {
+  static async logout(ctx: Context) {
     const { id } = ctx.user;
     let { n }: any = await UserModel.updateUserInfo(id, { token: uuid() });
     if (n === 1) {
@@ -121,7 +121,7 @@ export class UserController {
    * @param {type}
    * @return:
    */
-  static async getUserInfo(ctx: BaseContext) {
+  static async getUserInfo(ctx: Context) {
     const { token } = ctx.user;
     let userInfo: any = await UserModel.findUserByName({ token });
     if (userInfo) {
@@ -145,7 +145,7 @@ export class UserController {
    * @param {type}
    * @return:
    */
-  static async updateUserInfo(ctx: BaseContext) {
+  static async updateUserInfo(ctx: Context) {
     const { username } = ctx.user;
     const userInfo = ctx.query;
     let { n }: any = await UserModel.updateUserInfo(username, { ...userInfo });
@@ -162,7 +162,7 @@ export class UserController {
    * @param {type}
    * @return:
    */
-  static async delUser(ctx: BaseContext) {
+  static async delUser(ctx: Context) {
     let { id } = ctx.request.body;
     let { n }: any =  await UserModel.delUser(id);
     if (n === 1) {

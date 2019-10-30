@@ -1,6 +1,6 @@
 
 import { statusCode } from '../util/status-code';
-import { BaseContext } from 'koa';
+import { Context } from 'koa';
 import ArticleTagsModel from '../modules/article_tag';
 const uuid = require('uuid/v1');
 
@@ -9,7 +9,7 @@ interface ArticleTags {
 }
 
 export class ArticleTagsController {
-  static async create(ctx: BaseContext) {
+  static async create(ctx: Context) {
     let { tagName } = ctx.request.body;
     const isExit = await ArticleTagsModel.findTag(tagName);
     console.info('isExit', isExit);
@@ -29,7 +29,7 @@ export class ArticleTagsController {
       ctx.body = statusCode.ERROR_412('添加标签失败');
     }
   }
-  static async creates(ctx: BaseContext) {
+  static async creates(ctx: Context) {
     const { tagArr } = ctx.request.body;
     let tagNameArr = [];
     for (let item of tagArr) {
@@ -53,7 +53,7 @@ export class ArticleTagsController {
       ctx.body = statusCode.ERROR_412('添加标签失败');
     }
   }
-  static async getTags(ctx: BaseContext) {
+  static async getTags(ctx: Context) {
     const tagArr = await ArticleTagsModel.getTags()
     if (tagArr) {
       ctx.response.status = 200;

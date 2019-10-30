@@ -1,0 +1,16 @@
+{
+  "apps":[
+    {
+      "name": "cms-server",
+      "cwd": "./",
+      "script": "./dist/bin/www.js",
+      "exec_interpreter": "node",
+      "min_uptime": "60s",
+      "max_restarts": 30,
+      "exec_mode" : "fork",
+      "error_file" : "./logs/cms-server-err.log",
+      "out_file": "./logs/cms-server-out.log",
+      "pid_file": ".logs/cms-server.pid",
+      "watch": false
+    }
+]}
