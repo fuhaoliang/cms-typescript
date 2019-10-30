@@ -1,4 +1,42 @@
 启动3000端口
-连接数据库
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+数据库连接失败 { MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/topologies/server.js:431:11)
+    at emitOne (events.js:116:13)
+    at Pool.emit (events.js:211:7)
+    at createConnection (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/pool.js:559:14)
+    at connect (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/pool.js:973:11)
+    at makeConnection (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:39:11)
+    at callback (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:261:5)
+    at Socket.err (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:286:7)
+    at Object.onceWrapper (events.js:315:30)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at emitErrorNT (internal/streams/destroy.js:64:8)
+    at args.(anonymous function) (/usr/local/lib/node_modules/pm2/node_modules/event-loop-inspector/index.js:133:29)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+  name: 'MongoNetworkError',
+  errorLabels: [ 'TransientTransactionError' ],
+  [Symbol(mongoErrorContextSymbol)]: {} }
 启动3000端口
-连接数据库
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+数据库连接失败 { MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/topologies/server.js:431:11)
+    at emitOne (events.js:116:13)
+    at Pool.emit (events.js:211:7)
+    at createConnection (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/pool.js:559:14)
+    at connect (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/pool.js:973:11)
+    at makeConnection (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:39:11)
+    at callback (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:261:5)
+    at Socket.err (/Users/fuhaoliang/Desktop/公司/cms-typescript/node_modules/mongodb/lib/core/connection/connect.js:286:7)
+    at Object.onceWrapper (events.js:315:30)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at emitErrorNT (internal/streams/destroy.js:64:8)
+    at args.(anonymous function) (/usr/local/lib/node_modules/pm2/node_modules/event-loop-inspector/index.js:133:29)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+  name: 'MongoNetworkError',
+  errorLabels: [ 'TransientTransactionError' ],
+  [Symbol(mongoErrorContextSymbol)]: {} }
