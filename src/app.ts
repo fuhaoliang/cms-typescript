@@ -15,15 +15,19 @@ app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
 }));
 app.use(json());
-app.use(koaStatic(__dirname + '/public/cms'));
-app.use(koaStatic(__dirname + '/upload'));
-// error处理
+
 app.use(error());
+
+// app.use(koaStatic(__dirname + '/public/cms'));
+// app.use(koaStatic(__dirname + '/upload'));
+app.use(require('koa-static')(__dirname, 'upload'))
+// error处理
 
 // token认证
 app.use(jwt({ secret: secret.sign }).unless({
   path: [
     // 上传图片
+    /^\/upload/,
     /^\/api\/v1\/upload/,
     // 文章详情
     /^\/api\/v1\/article\/detail/,
