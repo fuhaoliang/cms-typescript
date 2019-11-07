@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const cmsBaseUrl = 'mongodb://127.0.0.1:27017/cms';
+const api_1 = require("../api");
+console.info(api_1.default);
+const cmsBaseUrl = api_1.default.mongodbUrl;
+console.info('mongodbUrl---->', cmsBaseUrl);
 mongoose.connect(cmsBaseUrl, { useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', err => {

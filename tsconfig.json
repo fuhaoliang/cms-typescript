@@ -13,9 +13,10 @@
               "node_modules/*",  //根据项目的路径指定
               "src/types/*"      //根据项目的路径指定
           ]
-      }
+      },
+      "allowJs": true   
   },
   "include": [
       "src/**/*"                //根据项目的路径指定
-  ]
+  ],
 }

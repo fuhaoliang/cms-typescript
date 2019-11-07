@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
 const bodyparser = require("koa-bodyparser");
 const json = require("koa-json");
-const koaStatic = require("koa-static");
 const jwt = require("koa-jwt");
 const index_1 = require("./routes/index");
 const error_1 = require("./middlrware/error");
 const secret_1 = require("./config/secret");
 const cros = require('@koa/cors');
+const path = require('path');
 const app = new Koa();
 app.use(cros());
 // middlrware
@@ -16,14 +16,15 @@ app.use(bodyparser({
     enableTypes: ['json', 'form', 'text']
 }));
 app.use(json());
-app.use(koaStatic(__dirname + '/public/cms'));
-app.use(koaStatic(__dirname + '/upload'));
-// error处理
 app.use(error_1.default());
+let pathUrl = path.join(__dirname, '../');
+app.use(require('koa-static')(pathUrl, 'upload'));
+// error处理
 // token认证
 app.use(jwt({ secret: secret_1.default.sign }).unless({
     path: [
         // 上传图片
+        /^\/upload/,
         /^\/api\/v1\/upload/,
         // 文章详情
         /^\/api\/v1\/article\/detail/,

@@ -3,7 +3,7 @@
     {
       "name": "cms-server",
       "cwd": "./",
-      "script": "./bin/www.js",
+      "script": "./dist/bin/www.js",
       "exec_interpreter": "node",
       "min_uptime": "60s",
       "max_restarts": 30,

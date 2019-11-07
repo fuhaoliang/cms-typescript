@@ -7,6 +7,7 @@ import router from './routes/index';
 import error from './middlrware/error';
 import secret from './config/secret';
 const cros = require('@koa/cors');
+const path = require('path')
 const app = new Koa();
 
 app.use(cros());
@@ -18,9 +19,9 @@ app.use(json());
 
 app.use(error());
 
-// app.use(koaStatic(__dirname + '/public/cms'));
-// app.use(koaStatic(__dirname + '/upload'));
-app.use(require('koa-static')(__dirname, 'upload'))
+let pathUrl =  path.join(__dirname, '../')
+app.use(require('koa-static')(pathUrl, 'upload'))
+
 // error处理
 
 // token认证

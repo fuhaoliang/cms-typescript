@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./dist/bin/www.js",
-    "watch-server": "nodemon --watch ./src -e ts,tsx --exec ts-node ./src/bin/www.ts",
-    "build": "tsc && node ./build/index.js"
+    "start": "cross-env NODE_ENV=development node ./build/buildconf && tsc && node ./dist/bin/www.js",
+    "watch-server": "cross-env NODE_ENV=development node ./build/buildconf && nodemon --watch ./src -e ts,tsx --exec ts-node ./src/bin/www.ts",
+    "build": "cross-env NODE_ENV=pro node ./build/buildconf && tsc"
   },
   "author": "fhl",
   "license": "ISC",
@@ -44,6 +44,7 @@
     "@typescript-eslint/parser": "^2.6.0",
     "@typescript-eslint/typescript-estree": "^2.6.0",
     "babel-eslint": "^10.0.1",
+    "cross-env": "^6.0.3",
     "eslint": "^5.16.0",
     "eslint-config-alloy": "^1.4.2",
     "nodemon": "^1.18.10",

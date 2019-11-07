@@ -1,5 +1,8 @@
 import * as mongoose from 'mongoose';
-const cmsBaseUrl = 'mongodb://127.0.0.1:27017/cms';
+import appUrl from '../api'
+console.info(appUrl);
+const cmsBaseUrl = appUrl.mongodbUrl;
+console.info('mongodbUrl---->', cmsBaseUrl);
 mongoose.connect(cmsBaseUrl, { useNewUrlParser: true, useCreateIndex: true });
 const db =  mongoose.connection;
 db.on('error', err => {
