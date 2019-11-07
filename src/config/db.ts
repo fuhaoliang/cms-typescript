@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import appUrl from '../api'
+import appUrl from '../api';
 console.info(appUrl);
 const cmsBaseUrl = appUrl.mongodbUrl;
 console.info('mongodbUrl---->', cmsBaseUrl);
