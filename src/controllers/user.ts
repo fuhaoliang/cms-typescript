@@ -3,7 +3,7 @@
 import UserModel from '../modules/user';
 import { statusCode } from '../util/status-code';
 import secret from '../config/secret';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { Context } from 'koa';
 const uuid = require('uuid/v1');

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-10-30 23:02:40
+ * @LastEditTime: 2019-11-14 23:14:40
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /cms-typescript/src/schema/article.ts
+ */
 import * as mongoose from 'mongoose';
 // 字段级别索引
 const articlesSchema = new mongoose.Schema({
@@ -14,7 +22,7 @@ const articlesSchema = new mongoose.Schema({
   // 文章标题
   title: {
     type: String,
-    required: true
+    required: [true, '文章标题必填'],
   },
   // 内容
   content: {
