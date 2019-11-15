@@ -24,6 +24,10 @@ const articlesSchema = new mongoose.Schema({
     type: String,
     required: [true, '文章标题必填'],
   },
+  // 文章概要
+  summary: {
+    type: String,
+  },
   // 内容
   content: {
     type: String,

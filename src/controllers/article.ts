@@ -9,6 +9,7 @@ const uuid = require('uuid/v1');
 interface Article {
   id?: string;
   banner?: string;
+  summary?: string;
   title?: string;
   content?: string;
   articleLink?: string;

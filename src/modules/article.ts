@@ -6,6 +6,7 @@ interface Article {
   id?: string;
   banner?: string;
   title?: string;
+  summary?: string;
   content?: string;
   articleLink?: string;
   isCommit?: boolean;
