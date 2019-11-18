@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-10-30 23:02:40
- * @LastEditTime: 2019-11-14 23:14:40
- * @LastEditors: your name
+ * @LastEditTime: 2019-11-18 23:24:20
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /cms-typescript/src/schema/article.ts
  */
