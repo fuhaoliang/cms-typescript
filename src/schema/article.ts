@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-10-30 23:02:40
- * @LastEditTime: 2019-11-18 23:24:20
+ * @LastEditTime: 2019-11-19 22:50:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /cms-typescript/src/schema/article.ts
@@ -15,7 +15,7 @@ const articlesSchema = new mongoose.Schema({
     index: true
   },
   // 封面图
-  banner: {
+  coverUrl: {
     type: String,
     default: ''
   },
