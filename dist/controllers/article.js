@@ -77,7 +77,8 @@ class ArticleController {
     // 获取
     static async getArticleInfo(ctx) {
         let { id } = ctx.params;
-        let article = await article_1.default.findArticle({ id });
+        let article = await article_1.default.updateViewArticle(id);
+        console.info('article=--->', article);
         if (article) {
             ctx.response.status = 200;
             ctx.body = status_code_1.statusCode.SUCCESS_200('ok', { articleObj: article });

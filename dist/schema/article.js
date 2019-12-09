@@ -1,5 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/*
+ * @Author: your name
+ * @Date: 2019-10-30 23:02:40
+ * @LastEditTime: 2019-11-19 22:50:23
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /cms-typescript/src/schema/article.ts
+ */
 const mongoose = require("mongoose");
 // 字段级别索引
 const articlesSchema = new mongoose.Schema({
@@ -9,14 +17,18 @@ const articlesSchema = new mongoose.Schema({
         index: true
     },
     // 封面图
-    banner: {
+    coverUrl: {
         type: String,
         default: ''
     },
     // 文章标题
     title: {
         type: String,
-        required: true
+        required: [true, '文章标题必填'],
+    },
+    // 文章概要
+    summary: {
+        type: String,
     },
     // 内容
     content: {

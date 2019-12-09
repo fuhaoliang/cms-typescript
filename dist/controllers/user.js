@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../modules/user");
 const status_code_1 = require("../util/status-code");
 const secret_1 = require("../config/secret");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const uuid = require('uuid/v1');
 class UserController {

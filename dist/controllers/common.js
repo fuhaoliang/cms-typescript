@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require('fs');
 const path = require('path');
-const api_1 = require("../api");
+const api_js_1 = require("../api.js");
 const status_code_1 = require("../util/status-code");
 // import { Context } from 'koa';
 class CommonControllers {
@@ -18,7 +18,7 @@ class CommonControllers {
             // 可读流通过管道写入可写流
             reader.pipe(upStream);
             ctx.response.status = 200;
-            ctx.body = status_code_1.statusCode.SUCCESS_200('ok', { file: `${api_1.default.uploadUrl}/${file.name}` });
+            ctx.body = status_code_1.statusCode.SUCCESS_200('ok', { file: `${api_js_1.default.uploadUrl}/${file.name}` });
         }
         catch (err) {
             ctx.response.status = 412;
