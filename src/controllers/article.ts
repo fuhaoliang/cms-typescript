@@ -141,14 +141,15 @@ export class ArticleController {
         $in: tagArr
       }
     }
-    let [articles, articleAll] =  await Promise.all([ArticleModel.findAtricles(query, sort, limit, skip), ArticleModel.findAtriclesAll(query)])
+
+    let [articles, totalCount] =  await Promise.all([ArticleModel.findAtricles(query, sort, limit, skip), ArticleModel.findAtriclesAllCount(query)])
     ctx.response.status = 200;
     ctx.body = statusCode.SUCCESS_200('ok', {
       data: articles,
       pageObj: {
         pagesize: limit,
         page: currentPage,
-        total: articleAll.length
+        total: totalCount
       }
     });
   }
@@ -161,5 +162,44 @@ export class ArticleController {
       puliceCount,
       tagArr
     });
+  }
+
+  // 通过标签id获取文章
+  static async getArticlesByTagId (ctx: Context) {
+    // 通过id 获取标签
+    const { tagId } = ctx.params
+    const tagObj = await ArticleTagsModel.findIdTag(tagId);
+
+    if (tagObj) {
+      const { tagName } = tagObj
+
+      let query = JSON.parse(JSON.stringify(ctx.query))
+      let limit = query.pagesize - 0 || 20; //分页参数
+      let currentPage = query.page - 0 || 1; //当前页码
+      let skip = (currentPage- 1) * limit
+      let sort = JSON.parse(query.sort || '{}')
+      delete query.pagesize
+      delete query.page
+      delete query.total
+      delete query.sort
+
+
+      query.tagArr = { $in: [ tagName ] }
+
+      let [articles, totalCount] =  await Promise.all([ArticleModel.findAtricles(query, sort, limit, skip), ArticleModel.findAtriclesAllCount(query)])
+      ctx.response.status = 200;
+      ctx.body = statusCode.SUCCESS_200('ok', {
+        data: articles,
+        pageObj: {
+          pagesize: limit,
+          page: currentPage,
+          total: totalCount
+        }
+      });
+    } else {
+        ctx.response.status = 200;
+        ctx.body = statusCode.ERROR_412('未发现文章');
+      }
+
   }
 }

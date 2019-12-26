@@ -65,4 +65,5 @@ export class ArticleTagsController {
       ctx.body = statusCode.ERROR_412('获取标签信息失败');
     }
   }
+  
 }

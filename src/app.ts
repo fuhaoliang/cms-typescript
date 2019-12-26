@@ -48,7 +48,9 @@ app.use(jwt({ secret: secret.sign }).unless({
     /^\/api\/v1\/article/,
     /^\/api\/v1\/tags/,
     // 查询
-    /^\/api\/v1\/articles/
+    /^\/api\/v1\/articles/,
+    //文章标签
+    /^\/api\/v1\/tags/
   ]
 }));
 

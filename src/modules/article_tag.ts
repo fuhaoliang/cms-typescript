@@ -15,6 +15,7 @@ export default class ArticleTagsModel {
       ...tag
     }).save();
   }
+
   static async creates(tagArr: Array<ArticleTags>) {
     return await ArticleTagsDbModel.insertMany(tagArr);
   }
@@ -28,5 +29,9 @@ export default class ArticleTagsModel {
   static async findExitTags(tagNameArr: Array<string>) {
     return await ArticleTagsDbModel.find({tagName: {$in: tagNameArr}}, {_id: 0});
   }
-  // 分页查询
+  // 通过Id获
+  static async findIdTag(tagId: string) {
+    return await ArticleTagsDbModel.findOne({ id: tagId }, {_id: 0});
+  }
+  
 }

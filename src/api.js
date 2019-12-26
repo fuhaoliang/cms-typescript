@@ -1,7 +1,7 @@
 export default {
-  env: 'pro',
+  env: 'dev',
   // 用户环境
-  baseApi: 'http://139.224.24.179/cms-server/api/v1',
-  uploadUrl: 'http://139.224.24.179/cms-server/upload',
-  mongodbUrl: 'mongodb://139.224.24.179:27017/cms'
+  baseApi: 'http://127.0.0.1:3000/api/v1',
+  uploadUrl: 'http://127.0.0.1:3000/upload',
+  mongodbUrl: 'mongodb://127.0.0.1:27017/cms'
 }

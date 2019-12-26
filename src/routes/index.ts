@@ -26,10 +26,13 @@ router.patch('/article/:id', ArticleController.pacthArticle);
 // 文章聚合接口
 router.get('/articles', ArticleController.getArticles);
 router.get('/articles/count', ArticleController.getArticlesCount);
+//根据标签id获取文章
+router.get('/articles/:tagId', ArticleController.getArticlesByTagId);
 
 // 文章标签
 router.post('/tags/create', ArticleTagsController.create);
 router.post('/tags/creates', ArticleTagsController.creates);
 router.get('/tags', ArticleTagsController.getTags);
+// router.get('/tags/:id', ArticleTagsController.getTagById);
 
 export default router;
