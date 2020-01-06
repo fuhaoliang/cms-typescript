@@ -118,14 +118,14 @@ class ArticleController {
                 $in: tagArr
             };
         }
-        let [articles, articleAll] = await Promise.all([article_1.default.findAtricles(query, sort, limit, skip), article_1.default.findAtriclesAll(query)]);
+        let [articles, totalCount] = await Promise.all([article_1.default.findAtricles(query, sort, limit, skip), article_1.default.findAtriclesAllCount(query)]);
         ctx.response.status = 200;
         ctx.body = status_code_1.statusCode.SUCCESS_200('ok', {
             data: articles,
             pageObj: {
                 pagesize: limit,
                 page: currentPage,
-                total: articleAll.length
+                total: totalCount
             }
         });
     }
@@ -138,6 +138,39 @@ class ArticleController {
             puliceCount,
             tagArr
         });
+    }
+    // 通过标签id获取文章
+    static async getArticlesByTagId(ctx) {
+        // 通过id 获取标签
+        const { tagId } = ctx.params;
+        const tagObj = await article_tag_1.default.findIdTag(tagId);
+        if (tagObj) {
+            const { tagName } = tagObj;
+            let query = JSON.parse(JSON.stringify(ctx.query));
+            let limit = query.pagesize - 0 || 20; //分页参数
+            let currentPage = query.page - 0 || 1; //当前页码
+            let skip = (currentPage - 1) * limit;
+            let sort = JSON.parse(query.sort || '{}');
+            delete query.pagesize;
+            delete query.page;
+            delete query.total;
+            delete query.sort;
+            query.tagArr = { $in: [tagName] };
+            let [articles, totalCount] = await Promise.all([article_1.default.findAtricles(query, sort, limit, skip), article_1.default.findAtriclesAllCount(query)]);
+            ctx.response.status = 200;
+            ctx.body = status_code_1.statusCode.SUCCESS_200('ok', {
+                data: articles,
+                pageObj: {
+                    pagesize: limit,
+                    page: currentPage,
+                    total: totalCount
+                }
+            });
+        }
+        else {
+            ctx.response.status = 200;
+            ctx.body = status_code_1.statusCode.ERROR_412('未发现文章');
+        }
     }
 }
 exports.ArticleController = ArticleController;

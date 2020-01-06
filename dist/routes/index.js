@@ -27,9 +27,12 @@ router.patch('/article/:id', article_1.ArticleController.pacthArticle);
 // 文章聚合接口
 router.get('/articles', article_1.ArticleController.getArticles);
 router.get('/articles/count', article_1.ArticleController.getArticlesCount);
+//根据标签id获取文章
+router.get('/articles/:tagId', article_1.ArticleController.getArticlesByTagId);
 // 文章标签
 router.post('/tags/create', article_tag_1.ArticleTagsController.create);
 router.post('/tags/creates', article_tag_1.ArticleTagsController.creates);
 router.get('/tags', article_tag_1.ArticleTagsController.getTags);
+// router.get('/tags/:id', ArticleTagsController.getTagById);
 exports.default = router;
 //# sourceMappingURL=index.js.map

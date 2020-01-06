@@ -20,6 +20,10 @@ class ArticleTagsModel {
     static async findExitTags(tagNameArr) {
         return await ArticleTagsDbModel.find({ tagName: { $in: tagNameArr } }, { _id: 0 });
     }
+    // 通过Id获
+    static async findIdTag(tagId) {
+        return await ArticleTagsDbModel.findOne({ id: tagId }, { _id: 0 });
+    }
 }
 exports.default = ArticleTagsModel;
 //# sourceMappingURL=article_tag.js.map

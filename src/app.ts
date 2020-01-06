@@ -19,8 +19,8 @@ app.use(json());
 
 app.use(error());
 
-let pathUrl =  path.join(__dirname, '../')
-app.use(require('koa-static')(pathUrl, 'upload'))
+// let pathUrl =  path.join(__dirname, '../')
+app.use(require('koa-static')(__dirname, './upload'))
 
 // error处理
 

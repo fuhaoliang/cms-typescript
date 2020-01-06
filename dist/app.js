@@ -17,8 +17,8 @@ app.use(bodyparser({
 }));
 app.use(json());
 app.use(error_1.default());
-let pathUrl = path.join(__dirname, '../');
-app.use(require('koa-static')(pathUrl, 'upload'));
+// let pathUrl =  path.join(__dirname, '../')
+app.use(require('koa-static')(__dirname, './upload'));
 // error处理
 // token认证
 app.use(jwt({ secret: secret_1.default.sign }).unless({
@@ -44,7 +44,9 @@ app.use(jwt({ secret: secret_1.default.sign }).unless({
         /^\/api\/v1\/article/,
         /^\/api\/v1\/tags/,
         // 查询
-        /^\/api\/v1\/articles/
+        /^\/api\/v1\/articles/,
+        //文章标签
+        /^\/api\/v1\/tags/
     ]
 }));
 // router控制
